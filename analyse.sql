@@ -102,7 +102,8 @@ from v_data_clean_workplace;
 create view v_temp1 as
 select *
 from v_data_clean_workplace
-where job_name like '%数据%' or job_name like '%分析%';
+where job_name like '%数据%'
+   or job_name like '%分析%';
 
 
 create view v_temp2 as
@@ -112,36 +113,177 @@ where job_name like '%数据%';
 
 
 #对比v1数据或分析和v2单纯用数据
-select * from v_temp1; #6945
-select * from v_temp2;4520
+select *
+from v_temp1; #6945
+select *
+from v_temp2;
+#4520
 
 #看得到的结果是否满足要求。
-select * from v_temp1 
+select *
+from v_temp1
 where v_temp1.id not in (select id from v_temp2);
 
 
 #处理职位名称
-create v_data_clean_jobname as 
-select * from v_data_clean_workplace where
-job_name like '%数据%'；
+create view v_data_clean_jobname as
+select *
+from v_data_clean_workplace
+where job_name like '%数据%';
+
 
 #5420
-select count(*) from v_data_clean_jobname;
+select count(*)
+from v_data_clean_jobname;
 
 #对清理结果命名
 
 create view v_data_clean as
-(select * from v_data_clean_jobname）；
+(
+select *
+from v_data_clean_jobname);
 
 
 
 create view v_data_market_demand as
-select
-    workplace as '城市'，
-    sum(degreefrom) as '招聘总量'，
-    count(*) as '职位数目',
+select workplace       as '城市',
+       sum(degreefrom) as '招聘总量',
+       count(*)        as '职位数目'
 from v_data_clean
 group by workplace;
+
+#按照城市得到招聘数量和职位数目，市场需求量
+select *
+from v_data_market_demand;
+
+#总招聘人数,30929
+select sum(degreefrom) as sum_degreefrom
+from v_data_clean;
+
+#得到不同公司类型需要的总人数
+select companytype_text,
+       sum(degreefrom) as degreefrom
+from v_data_clean
+group by companytype_text
+order by degreefrom desc;
+
+
+#就业企业类型分布
+create view v_data_companytype_degree as
+(
+select companytype_text                                                      as '企业类型',
+       degreefrom                                                            as '招聘量',
+       concat(cast(degreefrom / sum_degreefrom * 100 as decimal(4, 2)), '%') as '百分比'
+from (select companytype_text,
+             sum(degreefrom) as degreefrom
+      from v_data_clean
+      group by companytype_text
+      order by degreefrom desc) f1,
+     (select sum(degreefrom) as sum_degreefrom from v_data_clean) f2);
+
+#查询结果
+select *
+from v_data_companytype_degree;
+
+#规范薪资，单位
+#千/月->1000
+#万/月->10000
+#万/年->833
+create view v_data_salary_unit as
+select *,
+       (case
+            when providesalary_text like '%万/月' then 10000
+            when providesalary_text like '%千/月' then 1000
+            when providesalary_text like '%万/年' then 833
+           end
+           ) as unit
+from v_data_clean;
+
+select *
+from v_data_salary_unit;
+
+#提取薪资,test
+select cast(substring_index(
+        substring_index(providesalary_text, '千/月', 1), '-', 1
+    ) as decimal(6, 2)) * unit        as salary_min,
+       cast(substring_index(
+               substring_index(providesalary_text, '千/月', 1), '-', -1
+           ) as decimal(6, 2)) * unit as salary_max
+from v_data_salary_unit
+limit 1;
+
+
+
+create view v_data_salary_min_max_mean as
+with process as (select *,
+                        (case
+                             when unit = 1000 then
+                                     cast(substring_index(
+                                             substring_index(providesalary_text, '千/月', 1), '-', 1
+                                         ) as decimal(6, 2)) * unit
+                             when unit = 10000 then
+                                     cast(substring_index(
+                                             substring_index(providesalary_text, '万/月', 1), '-', 1
+                                         ) as decimal(6, 2)) * unit
+                             when unit = 833 then
+                                     cast(substring_index(
+                                             substring_index(providesalary_text, '万/年', 1), '-', 1
+                                         ) as decimal(6, 2)) * unit
+                            end
+                            ) as salary_min,
+                        (case
+                             when unit = 1000 then
+                                     cast(substring_index(
+                                             substring_index(providesalary_text, '千/月', 1), '-', -1
+                                         ) as decimal(6, 2)) * unit
+                             when unit = 10000 then
+                                     cast(substring_index(
+                                             substring_index(providesalary_text, '万/月', 1), '-', -1
+                                         ) as decimal(6, 2)) * unit
+                             when unit = 833 then
+                                     cast(substring_index(
+                                             substring_index(providesalary_text, '万/年', 1), '-', -1
+                                         ) as decimal(6, 2)) * unit
+                            end
+                            ) as salary_max
+                 from v_data_salary_unit)
+select *,
+       cast((salary_max + salary_min) / 2 as decimal(10, 2)) as salary_mean
+from process;
+
+
+#按照工作年限分组，求各组平均薪资
+create view v_data_workyear_salary as
+select workyear         as '工作年限',
+       avg(salary_mean) as '平均薪资'
+from v_data_salary_min_max_mean
+group by workyear
+order by length(workyear), workyear;
+
+#查询结果
+select *
+from v_data_workyear_salary;
+
+#按企业类型分组，计算平均薪资
+create view v_data_companytype_salary as
+select companytype_text as '企业类型',
+       avg(salary_mean) as '平均薪资'
+from v_data_salary_min_max_mean
+group by companytype_text
+order by avg(salary_mean) desc;
+
+select *
+from v_data_companytype_salary;
+
+
+
+
+
+
+
+
+
+
 
 
 
