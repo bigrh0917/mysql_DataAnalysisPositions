@@ -73,8 +73,75 @@ where rank_n = 1;
 
 select *
 from v_clean_data_distinct;
+#80859
+select count(*)
+from v_clean_data_distinct;
 
-select count(*) from v_clean_data_distinct;
+#限定区域
+#首先改变上海-浦东 为上海,数据的规范化
+create view v_data_clean_workplace as
+with process as (select *,
+                        (case
+                             when workarea_text like '%北京%' then '北京'
+                             when workarea_text like '%上海%' then '上海'
+                             when workarea_text like '%广州%' then '广州'
+                             when workarea_text like '%深圳%' then '深圳'
+                            end) as workplace
+                 from v_clean_data_distinct)
+select *
+from process
+where workplace is not null;
+
+#78719
+select count(*)
+from v_data_clean_workplace;
+
+#过滤周边的岗位，比如公关、整合销售经理
+#对爬虫得到的数据二次检索，对得到的数据再筛选一次
+#职位信息必须包含关键词，不同的数据有不同的策略，job_name必须包含数据,得尝试，比如分析，比如数据
+create view v_temp1 as
+select *
+from v_data_clean_workplace
+where job_name like '%数据%' or job_name like '%分析%';
+
+
+create view v_temp2 as
+select *
+from v_data_clean_workplace
+where job_name like '%数据%';
+
+
+#对比v1数据或分析和v2单纯用数据
+select * from v_temp1; #6945
+select * from v_temp2;4520
+
+#看得到的结果是否满足要求。
+select * from v_temp1 
+where v_temp1.id not in (select id from v_temp2);
+
+
+#处理职位名称
+create v_data_clean_jobname as 
+select * from v_data_clean_workplace where
+job_name like '%数据%'；
+
+#5420
+select count(*) from v_data_clean_jobname;
+
+#对清理结果命名
+
+create view v_data_clean as
+(select * from v_data_clean_jobname）；
+
+
+
+create view v_data_market_demand as
+select
+    workplace as '城市'，
+    sum(degreefrom) as '招聘总量'，
+    count(*) as '职位数目',
+from v_data_clean
+group by workplace;
 
 
 
