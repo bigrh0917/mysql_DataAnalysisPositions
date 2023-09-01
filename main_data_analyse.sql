@@ -251,6 +251,25 @@ select *,
        cast((salary_max + salary_min) / 2 as decimal(10, 2)) as salary_mean
 from process;
 
+with process as (
+select *,
+       (case
+            when salary_mean >= 50000 then 1
+           when salary_mean < 50000 and salary_mean >= 40000 then 2
+           when salary_mean < 40000 and salary_mean >= 30000 then 3
+           when salary_mean < 30000 and salary_mean >= 20000 then 4
+           when salary_mean < 20000 and salary_mean >= 10000 then 5
+           when salary_mean < 10000 and salary_mean >= 5000 then 6
+           when salary_mean < 5000 and salary_mean >= 3000 then 7
+           when salary_mean < 3000 then 8
+           end
+           ) as label
+from v_data_salary_min_max_mean)
+select count(*),label
+from process
+group by label;
+
+
 
 #按照工作年限分组，求各组平均薪资
 create view v_data_workyear_salary as
