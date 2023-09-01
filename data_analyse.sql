@@ -275,15 +275,35 @@ order by avg(salary_mean) desc;
 select *
 from v_data_companytype_salary;
 
+select *
+from v_data_clean;
 
 
+#得到招聘对应的技能需求
+create view v_data_skill_quantity as
+select skill,
+       count(*) as quantity
+from skill_table
+         inner join v_data_clean
+                    on v_data_clean.parse2_job_detail like concat('%', skill_table.skill, '%')
+group by skill_table.skill
+order by quantity desc
+limit 30
+;
 
+#5428,总招聘数目
+select *
+from v_data_clean;
 
-
-
-
-
-
+#技能出现的频数
+create view v_data_skill as
+select skill                                                               as '技能',
+       quantity                                                            as '出现频数',
+       concat(cast(quantity / total_quantity * 100 as decimal(4, 2)), '%') as '出现率'
+from v_data_skill_quantity as f1,
+     (select count(*) as total_quantity from v_data_clean) f2;
+select *
+from v_data_skill;
 
 
 
