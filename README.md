@@ -91,7 +91,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 - Data analytics positions have a small percentage of low income.
 - Data analytics roles are lucrative.
 
-![data_salary](.\asset\data_salary.jpg)
+![data_salary](.\\asset\\data_salary.jpg)
 
 ![game_salary](.\asset\game_salary.jpg)
 
