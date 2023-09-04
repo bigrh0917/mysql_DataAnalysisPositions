@@ -16,9 +16,9 @@
 
 
 
-### Preliminary
+## 👉Preliminary
 
-#### Data Sources
+### Data Sources
 
 Recruitment data obtained from job website by searching for the keywords "data analysis", "game" and "operation and maintenance".
 
@@ -26,37 +26,116 @@ Recruitment data obtained from job website by searching for the keywords "data a
 
 - Operations and games are used as references.
 
-#### Some notes for data processing
+### Some notes for data processing
 
 - **Missing data processing:** The presence of any item that is empty is considered invalid data.
-
 - **Duplicate data handling:** Only the latest posting is retained in the recruitment data of multiple identical jobs posted by the same company.
-
 - **Recruitment is limited to first-tier cities in China**: Be able to demonstrate trends in the industry and be regionally representative.
-
 - **Secondary search criteria:** Job names need to contain certain keywords respectively.
+- **Which skills?**: The top 30 skill keywords with the highest frequency of acquisition are noted as core skill points.
+- ...... (**For more details you can see** [data_analyse](./main_data_analyse.sql))
 
-- For more details you can see ..... : 
+### How to show results
 
-  [data_analyse](./main_data_analyse.sql)
+- Both **excel** ( current use ☑) and **pandas** are good choices.
 
-  
 
-**目标**：处理并且分析数据
 
-**数据怎么来？**：日志，爬虫
+## 👉Results obtained
 
-**怎么对比？** 与运维和游戏，对比数据分析岗位怎么样。对比薪资，招聘需求量
+### 🤨 Overview
 
-**限定一线城市**，代表大的趋势
+#### Number of Recruitments
 
-**数据来源：** 51-job 
+- There are around 40,000 hires for data analytics positions.
+- Data analytics positions are in high demand.
+- Beijing is the city with the highest demand.
+- The number of people in data analytics positions is more evenly distributed.
 
-**怎么分析岗位**：市场需求（招募数量），就业企业类型（城市、行业、就业企业类型数目与占比），岗位薪资（工作年限与平均薪资的关系，代表个人发展水平。不同企业的平均薪资发布，代表行业发展水平）。核心技能（我要找到一份这样的工作，需要学会什么技能才能胜任）
+![total_recruitment](.\asset\total_recruitment.jpg)
 
-**数据展示：** excel、pandas
 
-数据源：recruitment.sql
-Database: recruitment
 
-判断哪些缺失值可以缺少。字段为空都不要了。
+#### Number of Positions Recruited
+
+- There are many types of data analytics positions.
+- Beijing remains a great place to seek data analytics roles.
+
+![recruitment_type](.\asset\recruitment_type.jpg)
+
+
+
+#### Number recruited by different types of enterprises
+
+- Private companies have the highest demand for data analysts.
+
+![data_type_salary](.\asset\data_type_salary.jpg)
+
+
+
+#### Other information
+
+- Operations and gaming jobs, number of hires for different company types.
+
+![game_type_salary](.\asset\game_type_salary.jpg)
+
+![operator_type_salary](.\asset\operator_type_salary.jpg)
+
+
+
+### 🤑 Salary
+
+#### Salary distribution
+
+- There are a lot of high-paying data analytics positions.
+- Data analytics positions have a small percentage of low income.
+- Data analytics roles are lucrative.
+
+![data_salary](.\asset\data_salary.jpg)
+
+![game_salary](.\asset\game_salary.jpg)
+
+![operator_salary](.\asset\operator_salary.jpg)
+
+
+
+#### Salary and years of experience
+
+- Stable salary growth for data analytics positions.
+- Data Analysts can double their salary in their fifth year of employment and triple their initial salary after 7 years of employment.
+
+![Years_salary](.\asset\Years_salary.jpg)
+
+
+
+#### Salaries for different types of business recruitment
+
+- Salaries for data analytics jobs are evenly distributed across different industries
+
+![salary_dif_type](.\asset\salary_dif_type.jpg)
+
+
+
+### 💫 Skills
+
+#### Which skills ?
+
+![data_skill_requiried](.\asset\data_skill_requiried.jpg)
+
+
+
+#### Situation of the Top 30
+
+- Skills such as SQL, Big Data, EXCEL, report writing and Python are generally the most in demand in data analytics jobs.
+- Project experience in finance and e-commerce is important in a data analyst job.
+
+![data_skill](.\asset\data_skill.jpg)
+
+
+
+## Summary
+
+😎**Data Analytics jobs are in high demand, pay well and have a promising future !!!**
+
+​    - **It's a very good choice !!!**
+
