@@ -1,8 +1,46 @@
-# mysql_DataAnalysisPositions
- 
-**如果我对数据分析的岗位有兴趣，我该怎么办？——用数据分析了解数据分析岗位**
+# Learn more about **data analytics jobs** with **Data Analytics Methods**!  🥰
 
-数据分析的市场需求、就业情况和需要掌握的技能有哪些？
+🤔--**What should I do if I am interested in a data analytics position?** 
+
+🧐**--Understanding Data Analytics Positions with Data Analytics！**
+
+
+
+🧠 **By analyzing the data, we are going to get:** 
+
+- **which companies need data analytics jobs?** 
+- **What is the number of need?**
+-  **What are the salary levels for data analytics jobs?** 
+- **What do you need to learn to get a data analysis job?**
+- **......**
+
+
+
+### Preliminary
+
+#### Data Sources
+
+Recruitment data obtained from job website by searching for the keywords "data analysis", "game" and "operation and maintenance".
+
+- "Data analysis" as the main object of analysis.
+
+- Operations and games are used as references.
+
+#### Some notes for data processing
+
+- **Missing data processing:** The presence of any item that is empty is considered invalid data.
+
+- **Duplicate data handling:** Only the latest posting is retained in the recruitment data of multiple identical jobs posted by the same company.
+
+- **Recruitment is limited to first-tier cities in China**: Be able to demonstrate trends in the industry and be regionally representative.
+
+- **Secondary search criteria:** Job names need to contain certain keywords respectively.
+
+- For more details you can see ..... : 
+
+  [data_analyse]: ./main_data_analyse.sql
+
+  
 
 **目标**：处理并且分析数据
 
