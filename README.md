@@ -52,7 +52,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 - Beijing is the city with the highest demand.
 - The number of people in data analytics positions is more evenly distributed.
 
-![total_recruitment](./asset/total_recruitment.jpg)
+![total_recruitment](/asset/total_recruitment.jpg)
 
 
 
