@@ -2,7 +2,7 @@
 
 🤔--**What should I do if I am interested in a data analytics position?** 
 
-🧐**--Understanding Data Analytics Positions with Data Analytics！**
+🧐--**Understanding Data Analytics Positions with Data Analytics！**
 
 
 
@@ -38,7 +38,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 
 - For more details you can see ..... : 
 
-  [data_analyse]: ./main_data_analyse.sql
+  [data_analyse]: ./main_data_analyse.sql	"a"
 
   
 
