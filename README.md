@@ -52,7 +52,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 - Beijing is the city with the highest demand.
 - The number of people in data analytics positions is more evenly distributed.
 
-![total_recruitment](.\asset\total_recruitment.jpg)
+![total_recruitment](./asset/total_recruitment.jpg)
 
 
 
@@ -61,7 +61,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 - There are many types of data analytics positions.
 - Beijing remains a great place to seek data analytics roles.
 
-![recruitment_type](.\asset\recruitment_type.jpg)
+![recruitment_type](./asset/recruitment_type.jpg)
 
 
 
@@ -69,7 +69,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 
 - Private companies have the highest demand for data analysts.
 
-![data_type_salary](.\asset\data_type_salary.jpg)
+![data_type_salary](./asset/data_type_salary.jpg)
 
 
 
@@ -77,9 +77,9 @@ Recruitment data obtained from job website by searching for the keywords "data a
 
 - Operations and gaming jobs, number of hires for different company types.
 
-![game_type_salary](.\asset\game_type_salary.jpg)
+![game_type_salary](./asset/game_type_salary.jpg)
 
-![operator_type_salary](.\asset\operator_type_salary.jpg)
+![operator_type_salary](./asset/operator_type_salary.jpg)
 
 
 
@@ -91,11 +91,11 @@ Recruitment data obtained from job website by searching for the keywords "data a
 - Data analytics positions have a small percentage of low income.
 - Data analytics roles are lucrative.
 
-![data_salary](.\\asset\\data_salary.jpg)
+![data_salary](./asset/data_salary.jpg)
 
-![game_salary](.\asset\game_salary.jpg)
+![game_salary](./asset/game_salary.jpg)
 
-![operator_salary](.\asset\operator_salary.jpg)
+![operator_salary](./asset/operator_salary.jpg)
 
 
 
@@ -104,7 +104,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 - Stable salary growth for data analytics positions.
 - Data Analysts can double their salary in their fifth year of employment and triple their initial salary after 7 years of employment.
 
-![Years_salary](.\asset\Years_salary.jpg)
+![Years_salary](./asset/Years_salary.jpg)
 
 
 
@@ -112,7 +112,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 
 - Salaries for data analytics jobs are evenly distributed across different industries
 
-![salary_dif_type](.\asset\salary_dif_type.jpg)
+![salary_dif_type](./asset/salary_dif_type.jpg)
 
 
 
@@ -120,7 +120,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 
 #### Which skills ?
 
-![data_skill_requiried](.\asset\data_skill_requiried.jpg)
+![data_skill_requiried](./asset/data_skill_requiried.jpg)
 
 
 
@@ -129,7 +129,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 - Skills such as SQL, Big Data, EXCEL, report writing and Python are generally the most in demand in data analytics jobs.
 - Project experience in finance and e-commerce is important in a data analyst job.
 
-![data_skill](.\asset\data_skill.jpg)
+![data_skill](./asset/data_skill.jpg)
 
 
 
