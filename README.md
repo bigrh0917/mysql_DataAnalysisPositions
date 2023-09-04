@@ -38,7 +38,7 @@ Recruitment data obtained from job website by searching for the keywords "data a
 
 - For more details you can see ..... : 
 
-  [data_analyse]: ./main_data_analyse.sql	"a"
+  [data_analyse](./main_data_analyse.sql)
 
   
 
